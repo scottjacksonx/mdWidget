@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Markdown Widget</title>
+<style type="text/css">
+    @import "mdWidget.css";
+</style>
+<script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleInfoButton.js' charset='utf-8'/>
+<script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleAnimator.js' charset='utf-8'/>
+<script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleButton.js' charset='utf-8'/>
+</head>
+<body onload="setup();">
+    <script type='text/javascript'>
+        var gDoneButton;
+        ver gInfoButton;
+
+        function setup()
+        {
+            gDoneButton = new AppleGlassButton(document.getElementById("doneButton"), "Done", hidePrefs);
+            gInfoButton = new AppleInfoButton(document.getElementById("infoButton"), document.getElementById("front"), "white", "white", showPrefs);
+        }
+
+        function showPrefs()
+        {
+            var front = document.getElementById("front");
+            var back = document.getElementById("back");
+
+            if (window.widget)
+                widget.prepareForTransition("ToBack");
+
+            front.style.display="none";
+            back.style.display="block";
+
+            if (window.widget)
+                setTimeout ('widget.performTransition();', 0);
+        }
+
+        function hidePrefs()
+        {
+            var front = document.getElementById("front");
+            var back = document.getElementById("back");
+
+            if (window.widget)
+                widget.prepareForTransition("ToFront");
+
+            back.style.display="none";
+            front.style.display="block";
+
+            if (window.widget)
+                setTimeout ('widget.performTransition();', 0);
+        }
+
+    </script>
+    <div class="background" id="front">
+        <div style="background-color:#555;"></div>
+        <div class="content">
+            <a name="top" class="none"></a>
+            <div class="header">
+                Markdown syntax cheatsheet
+            </div>
+        
+            <table>
+                <tr>
+                    <td class="heading" onMouseOver="javascript:self.style.backgroundColor='#777';"><a href="#paragraphs" class="heading">Paragraphs</a></td>
+                    <td class="heading"><a href="#horizontalrules" class="heading">Horizontal Rules</a></td>
+                </tr>
+                <tr>
+                    <td class="heading"><a href="#headers" class="heading">Headers</a></td>
+                    <td class="heading"><a href="#links" class="heading">Links</a></td>
+                </tr>
+                <tr>
+                    <td class="heading"><a href="#blockquotes" class="heading">Blockquotes</a></td>
+                    <td class="heading"><a href="#emphasis" class="heading">Emphasis</a></td>
+                </tr>
+                <tr>
+                    <td class="heading"><a href="#lists" class="heading">Lists</a></td>
+                    <td class="heading"><a href="#code" class="heading">Code</a></td>
+                </tr>
+                <tr>
+                    <td class="heading"><a href="#codeblocks" class="heading">Code Blocks</a></td>
+                    <td class="heading"><a href="#images" class="heading">Images</a></td>
+                </tr>
+            </table>
+        
+            <br/>
+            
+            <a name="paragraphs" class="none"></a>
+            <div class="subheading">
+                Paragraphs
+            </div>
+            
+            <div class="text">
+                <p>
+                    A paragraph is one or more lines of consecutive text, separated by one or more blank lines.
+                </p>
+                
+                <p>
+                    This means that two hard-wrapped lines without a blank line between them are considered to be part of the same paragraph.
+                </p>
+                
+                <p>
+                    To insert a &lt;br/&gt; break tag using Markdown, end a line with two or more spaces and press return.
+                </p>
+            </div>
+            
+            <br/>
+            
+
+            <a name="headers" class="none"></a>
+            <div class="subheading">
+                Headers
+            </div>
+    
+            <div class="text">
+                <p>
+                    Markdown has two types of headers -- Setext and atx-style.
+                </p>
+                <table class="headingsTable">
+                    <tr>
+                        <td class="headingsTopCell" style="padding-bottom: 5px;">
+                            Setext
+                        </td>
+                        <td class="headingsTopCell">
+                            This is an H1<br/>
+                            =============
+                        </td>
+                        <td class="headingsTopCell" style="width:140px;">
+                            This is an H2<br/>
+                            -------------
+                        </td>
+                    </tr>
+        
+                    <tr>
+                        <td class="headingsBottomCell">
+                            atx-style
+                        </td>
+                        <td class="headingsBottomCell">
+                            # This is an H1
+                        </td>
+                        <td class="headingsBottomCell" style="width:140px;">
+                            ## This is an H2
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    Setext headers can have any number of ='s or<br/>-'s. You may "close" atx-style headers.
+                </p>
+            </div>
+    
+            <br/>
+    
+    
+            <a name="blockquotes" class="none"></a>
+            <div class="subheading">
+                Blockquotes
+            </div>
+    
+            <div class="text">
+                <p>
+                    Markdown uses email-style &gt; characters for blockquoting.
+                </p>
+                <table class="blockquoteTable">
+                    <tr>
+                        <td class="blockquoteCell" style="width:150px;">
+                            &gt; This is a blockquote<br/>
+                            &gt; with two paragraphs.<br/>
+                            &gt;<br/>
+                            &gt; The &gt; character is<br/>
+                            &gt; on every line.
+                        </td>
+                        <td class="blockquoteCell">
+                            &gt; You can also be lazy and just put the &gt; character on just the first line of the quote if the quote is one paragraph long.
+                        </td>
+            
+                    </tr>
+                </table>
+                
+                <p>
+                    Blockquotes can be nested.
+                </p>
+            </div>
+            
+            <br/>
+            
+            <a name="lists" class="none"></a>
+            <div class="subheading">
+                Lists
+            </div>
+            <div class="text">
+                <p>
+                    Markdown supports ordered and un-ordered lists.
+                </p>
+                
+                <table class="liststable">
+                    <tr>
+                        <td class="listsCell">Ordered</td>
+                        <td colspan="3" class="listsCell">Unordered</td>
+                    </tr>
+                    <tr>
+                        <td class="listsCell">
+                            1.  Step One<br/>
+                            2.  Step Two<br/>
+                            3.  Step Three<br/>
+                        </td>
+                        <td class="listsCell">
+                            *   Red<br/>
+                            *   Green<br/>
+                            *   Blue<br/>
+                        </td>
+                        <td class="listsCell">
+                            +   Red<br/>
+                            +   Green<br/>
+                            +   Blue<br/>
+                        </td>
+                        <td class="listsCell">
+                            -   Red<br/>
+                            -   Green<br/>
+                            -   Blue<br/>
+                        </td>
+                    </tr>
+                </table>
+                
+                <p>
+                    If a list item has &gt; 1 paragraph, paragraphs 2, 3,... must be indented by 4 spaces or a tab.
+                </p>
+            </div>
+            
+            <br/>
+            
+            <a name="codeblocks" class="none"></a>
+            <div class="subheading">
+                Code Blocks
+            </div>
+            
+            <div class="text">
+                <p>
+                    Code blocks are for writing about programming or markup source code. To make a code block, indent every line of the block by &gt;= 4 spaces or a tab. Within a code block, ampersands and angle brackets are automatically converted to HTML entities.
+                </p>
+                
+                <table class="codeblocksTable">
+                    <tr>
+                        <td class="codeblocksCell">
+                            This is a normal paragraph.<br/>
+                            <br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;This is a code block.
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+            
+            <br/>
+            
+            <a name="horizontalrules" class="none"></a>
+            <div class="subheading">
+                Horizontal Rules
+            </div>
+            
+            <div class="text">
+                <p>
+                    You can produce a horizontal rule tag (&lt;hr /&gt;) by placing three or more hyphens, asterisks or underscores on a line by themselves. Spaces between hyphens or asterisks are fine.
+                </p>
+                
+                <table class="hrTable">
+                    <tr>
+                        <td class="hrCell">
+                            * * *<br/>
+                            <br/>
+                            ***<br/>
+                            <br/>
+                            - - - -<br/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <br/>
+            
+            <a name="links" class="none"></a>
+            <div class="subheading">
+                Links
+            </div>
+            
+            <div class="text">
+                <p>
+                    Markdown supports two types of links -- inline and reference.
+                </p>
+                
+                <table class="codeblocksTable">
+                    <tr>
+                        <td class="codeblocksCell">
+                            Inline
+                        </td>
+                        <td class="codeblocksCell">
+                            This is [a link](http://example.com "Title here").
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <td class="codeblocksCell">
+                            Reference
+                        </td>
+                        <td class="codeblocksCell">
+                            This is [a link][id].<br/>
+                            ...<br/>
+                            [id]: http://example.com "Title here"
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <br/>
+            
+            <a name="emphasis" class="none"></a>
+            <div class="subheading">
+                Emphasis
+            </div>
+            
+            <div class="text">
+                <p>
+                    Markdown treats asterisks (*) and underscores (_) as indicators of emphasis.
+                </p>
+                <table class="codeblocksTable">
+                    <tr>
+                        <td class="codeblocksCell">
+                            Markdown
+                        </td>
+                        <td class="codeblocksCell">
+                            Output
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="codeblocksCell">
+                            *This* text _is_ italicised.
+                        </td>
+                        <td class="codeblocksCell">
+                            <i>This</i> text <i>is</i> italicised.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="codeblocksCell">
+                            **This** text __is__ bold.
+                        </td>
+                        <td class="codeblocksCell">
+                            <b>This</b> text <b>is</b> bold.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <br/>
+            
+            <a name="code" class="none"></a>
+            <div class="subheading">
+                Code
+            </div>
+            
+            <div class="text">
+                <p>To indicate a span of code, wrap it with backtick quotes (`). Unlike a pre-formatted code block, a code span indicates code within a normal paragraph.
+                </p>
+                
+                <table class="codeblocksTable">
+                    <tr>
+                        <td class="codeblocksCell">
+                            To print to stdout, use the `printf()` function.
+                        </td>
+                    </tr>
+                </table>
+                
+                <p>Within a code span, ampersands and angle brackets are encoded as HTML entities automatically.
+            </div>
+            
+            <br/>
+            
+            <a name="images" class="none"></a>
+            <div class="subheading">
+                Images
+            </div>
+            
+            <div class="text">
+                <p>
+                    Images are like links in that they are inserted in two styles: inline and reference.
+                </p>
+                
+                <table class="codeblocksTable">
+                    <tr>
+                        <td class="codeblocksCell">
+                            Inline
+                        </td>
+                        <td class="codeblocksCell">
+                            ![Alt text](path/to/img.jpg "Title here")
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                        <td class="codeblocksCell">
+                            Reference
+                        </td>
+                        <td class="codeblocksCell">
+                            ![Alt text][id]<br/>
+                            ...<br/>
+                            [id]: path/to/img.jpg "Title here"
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    To specify dimensions, use the &lt;img&gt; HTML tag.
+                </p>
+            </div>
+            <br/>
+            
+        </div>
+        <a href="#top" class="uparrow"><div style="text-align:center; width: 350px;">&uarr;</div></a>
+        <div id='infoButton'></div>
+    </div>
+    <div id="back" class="background">
+        <div id="doneButton"></div>
+    </div>
+</body>
+</html>

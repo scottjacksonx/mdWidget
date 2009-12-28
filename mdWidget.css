@@ -1,0 +1,181 @@
+div.header {
+	padding: 3px;
+	text-align: center;
+	font-size: 12pt;
+	font-family: Helvetica Neue;
+	font-weight: bold;
+	color: #DDD;
+	text-transform: uppercase;
+}
+
+
+div.text {
+	font-family: Monaco;
+	font-size: 8pt;
+	color: #DDD;
+	margin-left: 3px;
+}
+
+div.background {
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	background-color: #555;
+	padding-top: 15px;
+	padding-bottom: 2px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #DDD;
+}
+
+div.content {
+	height: 190px;
+	overflow: auto;
+	background-color: #333;
+}
+
+div.subheading {
+	font-weight: bold;
+	font-family: Helvetica Neue;
+	font-size: 12pt;
+	color: #DDD;
+	background-color: #777;
+	width:334px;
+	padding:3px;
+}
+
+div.summary {
+	font-family: Monaco;
+	font-size: 9pt;
+	color: #DDD;
+	width: 200px;
+}
+
+a.heading {
+	color: #DDD;
+	text-decoration: underline;
+	padding: 1px;
+	font-family: Monaco;
+	font-size: 11pt;
+	width: 150px;
+}
+
+a.none {
+	text-decoration: none;
+}
+
+a.uparrow {
+	text-decoration: none;
+	text-decoration: bold;
+	color: #DDD;
+}
+
+table.headingsTable {
+	font-family: Monaco, "Courier New";
+	font-size: 10pt;
+	color: #DDD;
+}
+
+td.headingsTopCell {
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+	padding-bottom: 1px;
+	font-size: 7pt;
+	width: 120px;
+	background-color: #555;
+}
+
+td.headingsBottomCell {
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+	font-size: 7pt;
+	width: 120px;
+	background-color: #555;
+}
+
+table.blockquoteTable {
+	font-family: Monaco, "Courier New";
+	font-size: 10pt;
+	color: #DDD;
+}
+
+td.blockquoteCell {
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+	font-size: 7pt;
+	background-color: #555;
+}
+
+
+table.listsTable {
+	font-family: Monaco, "Courier New";
+	font-size: 10pt;
+	color: #DDD;
+}
+
+td.listsCell {
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+	font-size: 7pt;
+	background-color: #555;
+}
+
+table.codeblocksTable {
+	font-family: Monaco, "Courier New";
+	font-size: 10pt;
+	color: #DDD;
+}
+
+td.codeblocksCell {
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+	font-size: 7pt;
+	background-color: #555;
+}
+
+table.hrTable {
+	font-family: Monaco, "Courier New";
+	font-size: 10pt;
+	color: #DDD;
+}
+
+td.hrCell {
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+	font-size: 7pt;
+	background-color: #555;
+}
+
+
+td.heading {
+	padding: 1px;
+	padding-top: 4px;
+	padding-bottom: 3px;
+	width:200px;
+	background-color: #777;
+	text-align: center;
+}
+
+
+#infoButton {
+
+}
+
+#front {
+	display:block;
+}
+
+#back {
+	display:none;
+}
+
+#doneButton {
+	position:absolute;
+	bottom:20px;
+	left:82px;
+}
