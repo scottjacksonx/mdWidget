@@ -2,10 +2,28 @@ div.header {
 	padding: 3px;
 	text-align: center;
 	font-size: 12pt;
-	font-family: Helvetica Neue;
+	font-family: Helvetica;
 	font-weight: bold;
 	color: #DDD;
-	text-transform: uppercase;
+}
+
+div.footer {
+	text-align:center; 
+	width: 355px;
+	height:20px;
+	position: relative;
+	top: 2px;
+	-webkit-border-bottom-left-radius: 15px;
+	-webkit-border-bottom-right-radius: 15px;
+	font-family: Helvetica;
+	font-size: 10pt;
+	color: #DDD;
+}
+
+div.card {
+	position: absolute;
+	top:250px;
+	width: 352px;
 }
 
 
@@ -18,7 +36,6 @@ div.text {
 
 div.background {
 	-webkit-border-radius: 15px;
-	border-radius: 15px;
 	background-color: #555;
 	padding-top: 15px;
 	padding-bottom: 2px;
@@ -29,7 +46,6 @@ div.background {
 
 div.content {
 	height: 190px;
-	overflow: auto;
 	background-color: #333;
 }
 
@@ -39,7 +55,7 @@ div.subheading {
 	font-size: 12pt;
 	color: #DDD;
 	background-color: #777;
-	width:334px;
+	width:349px;
 	padding:3px;
 }
 
@@ -154,11 +170,14 @@ td.hrCell {
 
 td.heading {
 	padding: 1px;
-	padding-top: 4px;
-	padding-bottom: 3px;
-	width:200px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width:172px;
 	background-color: #777;
 	text-align: center;
+	font-family: Gill Sans;
+	color: #DDD;
+	-webkit-border-radius: 5px;
 }
 
 
