@@ -15,16 +15,26 @@
         // Fade out the menu.
         var itemToFadeOut = document.getElementById("menu");
         var fadeHandler = function(a, c, s, f){ itemToFadeOut.style.opacity = c; };
-        new AppleAnimator(200, 13, 1.0, 0.0, fadeHandler).start();
-        
+        new AppleAnimator(300, 13, 1.0, 0.0, fadeHandler).start();
+
         // Bring the card up.
         var itemToMove = document.getElementById(card);
-        itemToMove.style.top = "200px";
+        itemToMove.style.top = "300px";
         var moveToTopPosition = 25;
         var originalTop = parseInt(document.defaultView.getComputedStyle(itemToMove, null).getPropertyValue("top"), 10);
         var moveHandler = function(a, c, s, f){ itemToMove.style.top = c + "px"; };
-        new AppleAnimator(400, 13, originalTop, moveToTopPosition, moveHandler).start();
+        new AppleAnimator(800, 13, originalTop, moveToTopPosition, moveHandler).start();
         currentlyVisible = card;
+        
+
+        
+        
+        // Fade in the 'back' button.
+        var itemToFadeIn = document.getElementById("backButton");
+        /*itemToFadeIn.style.opacity = 100;
+        itemToFadeIn.style.display = 'block';*/
+        var backButtonFadeHandler = function(a, c, s, f){ itemToFadeIn.style.opacity = c; };
+        new AppleAnimator(400, 13, 0.0, 1.0, backButtonFadeHandler).start();
     }
     
     function showMenu() {
@@ -36,9 +46,14 @@
             itemToMove.style.top = moveToTopPosition + "px";
         
             // Fade the menu in.
-            var itemToFadeIn = document.getElementById("menu");	// replace with name of element to fade
+            var itemToFadeIn = document.getElementById("menu");
             var menuFadeHandler = function(a, c, s, f){ itemToFadeIn.style.opacity = c; };
             new AppleAnimator(400, 13, 0.0, 1.0, menuFadeHandler).start();
+            
+            // Fade out the 'back' button.
+            var itemToFadeOut = document.getElementById("backButton");
+            var backButtonFadeHandler = function(a, c, s, f){ itemToFadeOut.style.opacity = c; };
+            new AppleAnimator(200, 13, 1.0, 0.0, backButtonFadeHandler).start();
             currentlyVisible = "menu";
         }
     }
@@ -50,7 +65,7 @@
             <div id="menu" class="card" style="top:25px;">
                 <a name="top" class="none"></a>
                 <div class="header">
-                    Markdown syntax cheatsheet
+                    Markdown Syntax
                 </div>
         
                 <table>
@@ -92,7 +107,7 @@
                     </p>
                 
                     <p>
-                        To insert a &lt;br/&gt; break tag using Markdown, end a line with two or more spaces and press return.
+                        To insert a <span style="font-family: Monaco; font-size: 8pt;">&lt;br/&gt;</span> break tag using Markdown, end a line with two or more spaces and press return.
                     </p>
                 </div>
             
@@ -194,9 +209,9 @@
                         </tr>
                         <tr>
                             <td class="listsCell">
-                                1.  Step One<br/>
-                                2.  Step Two<br/>
-                                3.  Step Three<br/>
+                                1.  Collect underpants<br/>
+                                2.  ?<br/>
+                                3.  Profit<br/>
                             </td>
                             <td class="listsCell">
                                 *   Red<br/>
@@ -414,7 +429,7 @@
             
         </div>
         <div id="infoButton"></div>
-        <div class="footer" onClick="showMenu()">&larr; Back</div>
+        <div class="footer"><div id="backButton" style="opacity: 0; position:relative; top:1px;" onClick="showMenu()" onMouseOver>Back to menu</div></div>
         
     </div>
     <div id="back" class="background">
