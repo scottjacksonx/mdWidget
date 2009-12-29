@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Markdown Widget</title>
+<style type="text/css">
+    @import "mdWidget.css";
+</style>
+<script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleAnimator.js' charset='utf-8'/>
+<script type="text/javascript">
+
+    var currentlyVisible = "menu";
+    function showCard(card) {
+        
+        // Fade out the menu.
+        var itemToFadeOut = document.getElementById("menu");
+        var fadeHandler = function(a, c, s, f){ itemToFadeOut.style.opacity = c; };
+        new AppleAnimator(300, 13, 1.0, 0.0, fadeHandler).start();
+
+        // Bring the card up.
+        var itemToMove = document.getElementById(card);
+        itemToMove.style.top = "300px";
+        var moveToTopPosition = 25;
+        var originalTop = parseInt(document.defaultView.getComputedStyle(itemToMove, null).getPropertyValue("top"), 10);
+        var moveHandler = function(a, c, s, f){ itemToMove.style.top = c + "px"; };
+        new AppleAnimator(800, 13, originalTop, moveToTopPosition, moveHandler).start();
+        currentlyVisible = card;
+        
+
+        
+        
+        // Fade in the 'back' button.
+        var itemToFadeIn = document.getElementById("backButton");
+        /*itemToFadeIn.style.opacity = 100;
+        itemToFadeIn.style.display = 'block';*/
+        var backButtonFadeHandler = function(a, c, s, f){ itemToFadeIn.style.opacity = c; };
+        new AppleAnimator(400, 13, 0.0, 1.0, backButtonFadeHandler).start();
+    }
+    
+    function showMenu() {
+        if (currentlyVisible != "menu") {
+            
+            // Move the current card back down.
+            var itemToMove = document.getElementById(currentlyVisible);
+            var moveToTopPosition = 250;
+            itemToMove.style.top = moveToTopPosition + "px";
+        
+            // Fade the menu in.
+            var itemToFadeIn = document.getElementById("menu");
+            var menuFadeHandler = function(a, c, s, f){ itemToFadeIn.style.opacity = c; };
+            new AppleAnimator(400, 13, 0.0, 1.0, menuFadeHandler).start();
+            
+            // Fade out the 'back' button.
+            var itemToFadeOut = document.getElementById("backButton");
+            var backButtonFadeHandler = function(a, c, s, f){ itemToFadeOut.style.opacity = c; };
+            new AppleAnimator(200, 13, 1.0, 0.0, backButtonFadeHandler).start();
+            currentlyVisible = "menu";
+        }
+    }
+</script>
+</head>
+<body>
+    <div class="background" id="front">
+        <div class="content">
+            <div id="menu" class="card" style="top:25px;">
+                <a name="top" class="none"></a>
+                <div class="header">
+                    Markdown Syntax
+                </div>
+        
+                <table>
+                    <tr>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('paragraphscard')">Paragraphs</td>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('horizontalrulescard')">Horizontal Rules</td>
+                    </tr>
+                    <tr>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('headerscard')">Headers</td>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('linkscard')">Links</td>
+                    </tr>
+                    <tr>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('blockquotescard')">Blockquotes</td>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('emphasiscard')">Emphasis</td>
+                    </tr>
+                    <tr>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('listscard')">Lists</td>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('codecard')">Code</td>
+                    </tr>
+                    <tr>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('codeblockscard')">Code Blocks</td>
+                        <td class="heading" onMouseOver="this.style.backgroundColor='#888';" onMouseOut="this.style.backgroundColor='#777';" onClick="showCard('imagescard')">Images</td>
+                    </tr>
+                </table>
+            </div> <!-- End card-->
+            
+            <div id="paragraphscard" class="card">
+                <div class="subheading">
+                    Paragraphs
+                </div>
+            
+                <div class="text">
+                    <p>
+                        A paragraph is one or more lines of consecutive text, separated by one or more blank lines.
+                    </p>
+                
+                    <p>
+                        This means that two hard-wrapped lines without a blank line between them are considered to be part of the same paragraph.
+                    </p>
+                
+                    <p>
+                        To insert a <span style="font-family: Monaco; font-size: 8pt;">&lt;br/&gt;</span> break tag using Markdown, end a line with two or more spaces and press return.
+                    </p>
+                </div>
+            
+
+            </div> <!-- End card -->
+            
+
+            <div id="headerscard" class="card">
+                <div class="subheading">
+                    Headers
+                </div>
+    
+                <div class="text">
+                    <p>
+                        Markdown has two types of headers -- Setext and atx-style.
+                    </p>
+                    <table class="headingsTable">
+                        <tr>
+                            <td class="headingsTopCell" style="padding-bottom: 5px;">
+                                Setext <span style="font-size:8pt;">&rarr;</span>
+                            </td>
+                            <td class="headingsTopCell">
+                                This is an H1<br/>
+                                =============
+                            </td>
+                            <td class="headingsTopCell" style="width:140px;">
+                                This is an H2<br/>
+                                -------------
+                            </td>
+                        </tr>
+        
+                        <tr>
+                            <td class="headingsBottomCell">
+                                atx-style <span style="font-size:8pt;">&rarr;</span>
+                            </td>
+                            <td class="headingsBottomCell">
+                                # This is an H1
+                            </td>
+                            <td class="headingsBottomCell" style="width:140px;">
+                                ## This is an H2
+                            </td>
+                        </tr>
+                    </table>
+                    <p>
+                        Setext headers can have any number of ='s or -'s. You may "close" atx-style headers.
+                    </p>
+                </div>
+    
+
+            </div>
+    
+    
+            <div id="blockquotescard" class="card">
+                <div class="subheading">
+                    Blockquotes
+                </div>
+    
+                <div class="text">
+                    <p>
+                        Markdown uses email-style &gt; characters for blockquoting.
+                    </p>
+                    <table class="blockquoteTable">
+                        <tr>
+                            <td class="blockquoteCell" style="width:150px;">
+                                &gt; This is a blockquote<br/>
+                                &gt; with two paragraphs.<br/>
+                                &gt;<br/>
+                                &gt; The &gt; character is<br/>
+                                &gt; on every line.
+                            </td>
+                            <td class="blockquoteCell">
+                                &gt; You can also be lazy and just put the &gt; character on just the first line of the quote if the quote is one paragraph long.
+                            </td>
+            
+                        </tr>
+                    </table>
+                
+                    <p>
+                        Blockquotes can be nested.
+                    </p>
+                </div>
+            
+
+            </div> <!-- End card-->
+            
+            <div id="listscard" class="card">
+                <div class="subheading">
+                    Lists
+                </div>
+                <div class="text">
+                    <p>
+                        Markdown supports ordered and un-ordered lists.
+                    </p>
+                
+                    <table class="liststable">
+                        <tr>
+                            <td class="listsCell">Ordered</td>
+                            <td colspan="3" class="listsCell">Unordered</td>
+                        </tr>
+                        <tr>
+                            <td class="listsCell">
+                                1.  Collect underpants<br/>
+                                2.  ?<br/>
+                                3.  Profit<br/>
+                            </td>
+                            <td class="listsCell">
+                                *   Red<br/>
+                                *   Green<br/>
+                                *   Blue<br/>
+                            </td>
+                            <td class="listsCell">
+                                +   Red<br/>
+                                +   Green<br/>
+                                +   Blue<br/>
+                            </td>
+                            <td class="listsCell">
+                                -   Red<br/>
+                                -   Green<br/>
+                                -   Blue<br/>
+                            </td>
+                        </tr>
+                    </table>
+                
+                    <p>
+                        If a list item has &gt; 1 paragraph, paragraphs 2, 3,... must be indented by 4 spaces or a tab.
+                    </p>
+                </div>
+            
+
+            </div> <!-- End Card -->
+            
+            <div id="codeblockscard" class="card">
+                <div class="subheading">
+                    Code Blocks
+                </div>
+            
+                <div class="text">
+                    <p>
+                        Code blocks are for writing about programming or markup source code. To make a code block, indent every line of the block by &gt;= 4 spaces or a tab. Within a code block, ampersands and angle brackets are automatically converted to HTML entities.
+                    </p>
+                
+                    <table class="codeblocksTable">
+                        <tr>
+                            <td class="codeblocksCell">
+                                This is a normal paragraph.<br/>
+                                <br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;This is a code block.
+                            </td>
+                        </tr>
+                    </table>
+                
+                </div>
+            
+
+            </div>
+            
+            <div id="horizontalrulescard" class="card">
+                <div class="subheading">
+                    Horizontal Rules
+                </div>
+            
+                <div class="text">
+                    <p>
+                        You can produce a horizontal rule tag (&lt;hr /&gt;) by placing three or more hyphens, asterisks or underscores on a line by themselves. Spaces between hyphens or asterisks are fine.
+                    </p>
+                
+                    <table class="hrTable">
+                        <tr>
+                            <td class="hrCell">
+                                * * *<br/>
+                                <br/>
+                                ***<br/>
+                                <br/>
+                                - - - -<br/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            
+
+            </div> <!-- End card -->
+            
+            <div id="linkscard" class="card">
+                <div class="subheading">
+                    Links
+                </div>
+            
+                <div class="text">
+                    <p>
+                        Markdown supports two types of links -- inline and reference.
+                    </p>
+                
+                    <table class="codeblocksTable">
+                        <tr>
+                            <td class="codeblocksCell">
+                                Inline
+                            </td>
+                            <td class="codeblocksCell">
+                                This is [a link](http://example.com "Title here").
+                            </td>
+                        </tr>
+                        <tr>
+                        
+                            <td class="codeblocksCell">
+                                Reference
+                            </td>
+                            <td class="codeblocksCell">
+                                This is [a link][id].<br/>
+                                ...<br/>
+                                [id]: http://example.com "Title here"
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            
+
+            </div>
+            
+            <div id="emphasiscard" class="card">
+                <div class="subheading">
+                    Emphasis
+                </div>
+            
+                <div class="text">
+                    <p>
+                        Markdown treats asterisks (*) and underscores (_) as indicators of emphasis.
+                    </p>
+                    <table class="codeblocksTable">
+                        <tr>
+                            <td class="codeblocksCell">
+                                Markdown
+                            </td>
+                            <td class="codeblocksCell">
+                                Output
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="codeblocksCell">
+                                *This* text _is_ italicised.
+                            </td>
+                            <td class="codeblocksCell">
+                                <i>This</i> text <i>is</i> italicised.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="codeblocksCell">
+                                **This** text __is__ bold.
+                            </td>
+                            <td class="codeblocksCell">
+                                <b>This</b> text <b>is</b> bold.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            
+
+            </div> <!-- End card -->
+            
+            <div id="codecard" class="card">
+                <div class="subheading">
+                    Code
+                </div>
+            
+                <div class="text">
+                    <p>To indicate a span of code, wrap it with backtick quotes (`). Unlike a pre-formatted code block, a code span indicates code within a normal paragraph.
+                    </p>
+                
+                    <table class="codeblocksTable">
+                        <tr>
+                            <td class="codeblocksCell">
+                                To print to stdout, use the `printf()` function.
+                            </td>
+                        </tr>
+                    </table>
+                
+                    <p>Within a code span, ampersands and angle brackets are encoded as HTML entities automatically.
+                </div>
+            
+
+            </div> <!-- End card -->
+            
+            <div id="imagescard" class="card">
+                <div class="subheading">
+                    Images
+                </div>
+            
+                <div class="text">
+                    <p>
+                        Images are like links in that they are inserted in two styles: inline and reference.
+                    </p>
+                
+                    <table class="codeblocksTable">
+                        <tr>
+                            <td class="codeblocksCell">
+                                Inline
+                            </td>
+                            <td class="codeblocksCell">
+                                ![Alt text](path/to/img.jpg "Title here")
+                            </td>
+                        </tr>
+                        <tr>
+                        
+                            <td class="codeblocksCell">
+                                Reference
+                            </td>
+                            <td class="codeblocksCell">
+                                ![Alt text][id]<br/>
+                                ...<br/>
+                                [id]: path/to/img.jpg "Title here"
+                            </td>
+                        </tr>
+                    </table>
+                    <p>
+                        To specify dimensions, use the &lt;img&gt; HTML tag.
+                    </p>
+                </div>
+
+            </div> <!-- End card -->
+            
+        </div>
+        <div id="infoButton"></div>
+        <div class="footer"><div id="backButton" style="opacity: 0; position:relative; top:1px;" onClick="showMenu()" onMouseOver>Back to menu</div></div>
+        
+    </div>
+    <div id="back" class="background">
+        <div id="doneButton"></div>
+    </div>
+</body>
+</html>
