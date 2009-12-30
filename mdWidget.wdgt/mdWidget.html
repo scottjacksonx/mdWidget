@@ -3,58 +3,60 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Markdown Widget</title>
+
 <style type="text/css">
     @import "mdWidget.css";
 </style>
+
 <script type='text/javascript' src='/System/Library/WidgetResources/AppleClasses/AppleAnimator.js' charset='utf-8'/>
 <script type="text/javascript">
 
-    var currentlyVisible = "menu";
-    function showCard(card) {
+    var currentlyVisibleID = "menu";
+    function showCard(cardID) {
+        var card = document.getElementById(cardID);
+        var menu = document.getElementById("menu");
+        var backButton = document.getElementById("backButton");
+        
         
         // Fade out the menu.
-        var itemToFadeOut = document.getElementById("menu");
-        var fadeHandler = function(a, c, s, f){ itemToFadeOut.style.opacity = c; };
-        new AppleAnimator(300, 13, 1.0, 0.0, fadeHandler).start();
-
-        // Bring the card up.
-        var itemToMove = document.getElementById(card);
-        itemToMove.style.top = "300px";
+        var fadeOutHandler = function(a, c, s, f){ menu.style.opacity = c; };
+        new AppleAnimator(300, 13, 1.0, 0.0, fadeOutHandler).start();
+        
+        // Fade in the card.
+        card.style.opacity = 100;
+        card.style.top = "40px";
+        var fadeInHandler = function(a, c, s, f){ card.style.opacity = c; };
+        new AppleAnimator(500, 13, 0.0, 1.0, fadeInHandler).start();
+        
+        // Move the card up at the same time.
         var moveToTopPosition = 25;
-        var originalTop = parseInt(document.defaultView.getComputedStyle(itemToMove, null).getPropertyValue("top"), 10);
-        var moveHandler = function(a, c, s, f){ itemToMove.style.top = c + "px"; };
-        new AppleAnimator(800, 13, originalTop, moveToTopPosition, moveHandler).start();
-        currentlyVisible = card;
-        
+        var originalTop = parseInt(document.defaultView.getComputedStyle(card, null).getPropertyValue("top"), 10);
+        var moveHandler = function(a, c, s, f){ card.style.top = c + "px"; };
+        new AppleAnimator(500, 13, originalTop, moveToTopPosition, moveHandler).start();
+        currentlyVisibleID = cardID;
 
-        
-        
         // Fade in the 'back' button.
-        var itemToFadeIn = document.getElementById("backButton");
-        /*itemToFadeIn.style.opacity = 100;
-        itemToFadeIn.style.display = 'block';*/
-        var backButtonFadeHandler = function(a, c, s, f){ itemToFadeIn.style.opacity = c; };
+        var backButtonFadeHandler = function(a, c, s, f){ backButton.style.opacity = c; };
         new AppleAnimator(400, 13, 0.0, 1.0, backButtonFadeHandler).start();
     }
     
     function showMenu() {
-        if (currentlyVisible != "menu") {
+        if (currentlyVisibleID != "menu") {
+            var currentCard = document.getElementById(currentlyVisibleID);
+            var menu = document.getElementById("menu");
+            var backButton = document.getElementById("backButton");
             
             // Move the current card back down.
-            var itemToMove = document.getElementById(currentlyVisible);
-            var moveToTopPosition = 250;
-            itemToMove.style.top = moveToTopPosition + "px";
+            currentCard.style.top = "250px";
         
             // Fade the menu in.
-            var itemToFadeIn = document.getElementById("menu");
-            var menuFadeHandler = function(a, c, s, f){ itemToFadeIn.style.opacity = c; };
+            var menuFadeHandler = function(a, c, s, f){ menu.style.opacity = c; };
             new AppleAnimator(400, 13, 0.0, 1.0, menuFadeHandler).start();
             
             // Fade out the 'back' button.
-            var itemToFadeOut = document.getElementById("backButton");
-            var backButtonFadeHandler = function(a, c, s, f){ itemToFadeOut.style.opacity = c; };
+            var backButtonFadeHandler = function(a, c, s, f){ backButton.style.opacity = c; };
             new AppleAnimator(200, 13, 1.0, 0.0, backButtonFadeHandler).start();
-            currentlyVisible = "menu";
+            currentlyVisibleID = "menu";
         }
     }
 </script>
@@ -271,7 +273,7 @@
             
                 <div class="text">
                     <p>
-                        You can produce a horizontal rule tag (&lt;hr /&gt;) by placing three or more hyphens, asterisks or underscores on a line by themselves. Spaces between hyphens or asterisks are fine.
+                        You can produce a horizontal rule tag (<span style="font-family: Monaco;">&lt;hr /&gt;</span>) by placing three or more hyphens, asterisks or underscores on a line by themselves. Spaces between hyphens or asterisks are fine.
                     </p>
                 
                     <table class="hrTable">
@@ -421,7 +423,7 @@
                         </tr>
                     </table>
                     <p>
-                        To specify dimensions, use the &lt;img&gt; HTML tag.
+                        To specify dimensions, use the <span style="font-family: Monaco;">&lt;img&gt;</span> HTML tag.
                     </p>
                 </div>
 
